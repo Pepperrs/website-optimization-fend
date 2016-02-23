@@ -8,7 +8,8 @@ var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
-
+var del = require('del');
+var runSequence = require('run-sequence');
 
 
 gulp.task('useref', function(){
@@ -30,3 +31,15 @@ gulp.task('images', function(){
         })))
         .pipe(gulp.dest('dist/img'))
 });
+
+
+gulp.task('clean:dist', function() {
+    return del.sync('dist');
+})
+
+gulp.task('build', function (callback) {
+    runSequence('clean:dist',
+        ['useref', 'images'],
+        callback
+    )
+})
