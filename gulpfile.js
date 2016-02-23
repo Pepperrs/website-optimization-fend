@@ -12,6 +12,8 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var imageResize = require('gulp-image-resize');
 var uncss = require('gulp-uncss');
+var csso = require('gulp-csso');
+var criticalobj = require('critical').stream;
 
 
 
@@ -22,15 +24,22 @@ gulp.task('useref', function(){
         .pipe(useref())
         .pipe(gulpIf('*.js', uglify()))
         // Minifies only if it's a CSS file
-        .pipe(gulpIf('*.css', cssnano()))
         .pipe(gulpIf('*.css', uncss({
             html: ['index.html', 'posts/**/*.html', 'http://example.com']
         })))
+        .pipe(gulpIf('*.css', csso()))
+        .pipe(gulpIf('*.css', cssnano()))
         .pipe(gulp.dest('dist'))
 });
 
 
 
+// Generate & Inline Critical-path CSS
+gulp.task('critical', function () {
+    return gulp.src('dist/*.html')
+        .pipe(criticalobj({base: 'dist/', inline: true, css: ['dist/css/styles.min.css', 'dist/css/print.min.css', 'dist/css/pizzastyle.min.css']}))
+        .pipe(gulp.dest('dist'));
+});
 
 
 
@@ -70,7 +79,7 @@ gulp.task('clean:dist', function() {
 
 gulp.task('build', function (callback) {
     runSequence('clean:dist',
-        ['useref', 'images'], 'pizzeria',
+        ['useref', 'images'], 'critical', 'pizzeria',
         callback
     )
 });

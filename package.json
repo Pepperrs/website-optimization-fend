@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "a simple portfolio which is to be optimized",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "critical": "^0.7.0"
+  },
   "devDependencies": {
+    "critical": "^0.7.0",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-cache": "^0.4.2",
     "gulp-cssnano": "^2.1.1",
+    "gulp-csso": "^1.0.1",
     "gulp-image-resize": "^0.7.1",
     "gulp-imagemin": "^2.4.0",
     "gulp-jshint": "^2.0.0",
