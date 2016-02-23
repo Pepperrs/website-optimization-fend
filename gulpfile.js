@@ -11,6 +11,10 @@ var cache = require('gulp-cache');
 var del = require('del');
 var runSequence = require('run-sequence');
 var imageResize = require('gulp-image-resize');
+var uncss = require('gulp-uncss');
+
+
+
 
 
 gulp.task('useref', function(){
@@ -18,7 +22,7 @@ gulp.task('useref', function(){
         .pipe(useref())
         .pipe(gulpIf('*.js', uglify()))
         // Minifies only if it's a CSS file
-        .pipe(gulpIf('*.css', cssnano()))
+        .pipe(gulpIf('*.css',uncss({html: ['index.html', '/**/*.html']}), cssnano()))
         .pipe(gulp.dest('dist'))
 });
 
