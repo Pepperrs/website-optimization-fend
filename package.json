@@ -1,0 +1,21 @@
+{
+  "name": "fend_4_optimization",
+  "version": "1.0.0",
+  "description": "a simple portfolio which is to be optimized",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pepperrs/website-optimization-fend.git"
+  },
+  "author": "Peter Schüllermann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pepperrs/website-optimization-fend/issues"
+  },
+  "homepage": "https://github.com/Pepperrs/website-optimization-fend#readme"
+}
