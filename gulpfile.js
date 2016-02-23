@@ -22,9 +22,21 @@ gulp.task('useref', function(){
         .pipe(useref())
         .pipe(gulpIf('*.js', uglify()))
         // Minifies only if it's a CSS file
-        .pipe(gulpIf('*.css',uncss({html: ['index.html', '/**/*.html']}), cssnano()))
+        .pipe(gulpIf('*.css', cssnano()))
+        .pipe(gulpIf('*.css', uncss({
+            html: ['index.html', 'posts/**/*.html', 'http://example.com']
+        })))
         .pipe(gulp.dest('dist'))
 });
+
+
+
+
+
+
+
+
+
 
 
 
@@ -58,7 +70,7 @@ gulp.task('clean:dist', function() {
 
 gulp.task('build', function (callback) {
     runSequence('clean:dist',
-        ['useref', 'images', 'pizzeria'],
+        ['useref', 'images'], 'pizzeria',
         callback
     )
 });
