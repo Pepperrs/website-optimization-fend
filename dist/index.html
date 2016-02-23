@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content=" FILL ME IN ">
-    <meta name="author" content=" FILL ME IN ">
-    <title>Cameron Pittman: Portfolio</title>
+    <meta name="description" content="Website optimization project">
+    <meta name="author" content="Peter Schüllermann">
+    <title>Optimizer</title>
 
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
     <style type="text/css">
@@ -21,6 +21,9 @@ body {
   font-size: 14px;
   line-height: 1.61;
   font-weight: 400;
+}
+
+body {
   font-family: Open Sans,sans-serif;
   color: #333;
 }
@@ -29,13 +32,96 @@ a {
   color: #12c;
 }
 
+strong {
+  font-weight: 700;
+}
+
+ul {
+  margin: 1em 0;
+  padding: 0 0 0 20px;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+}
+
 body {
   background: #fff;
+}
+
+.container,
+footer,
+header {
+  max-width: 45em;
+  margin: 0 auto;
+}
+
+header {
+  padding: 0 .5em;
+  color: #c90b0b;
+}
+
+header img {
+  border-radius: 40px;
+  float: left;
+}
+
+header p {
+  font-size: 1.5em;
+  font-weight: 700;
+  padding-left: 4em;
+}
+
+header p span {
+  font-size: .8em;
+  font-weight: 400;
+}
+
+.hero {
+  padding: 2em;
+  background-color: #f8f8f8;
+  font-size: 1.2em;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+.content {
+  padding: 1em;
+}
+
+.content li {
+  list-style-type: none;
+  font-size: 1.1em;
+}
+
+li img {
+  float: left;
+  padding-right: 1em;
+}
+
+li p {
+  font-size: .9em;
+  font-style: italic;
+}
+
+footer {
+  padding: 0 .5em;
+  border-top: 1px solid #ccc;
+}
+
+footer span {
+  float: right;
+  font-style: italic;
 }
 
 @media only screen and (max-width:480px) {
   body {
     font-size: 12px;
+  }
+
+  header p {
+    padding-left: 4.5em;
   }
 }
 
@@ -48,6 +134,49 @@ body {
 body {
   font-family: Trebuchet MS,Helvetica,sans-serif;
   background: #000;
+}
+
+.container {
+  background-color: rgba(240,60,60,.8);
+}
+
+img {
+  vertical-align: middle;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width:768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width:992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width:1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.container:after,
+.container:before {
+  content: " ";
+  display: table;
+}
+
+.container:after {
+  clear: both;
 }
 
 </style>

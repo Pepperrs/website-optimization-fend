@@ -23,6 +23,9 @@ body {
   font-size: 14px;
   line-height: 1.61;
   font-weight: 400;
+}
+
+body {
   font-family: Open Sans,sans-serif;
   color: #333;
 }
@@ -31,13 +34,65 @@ a {
   color: #12c;
 }
 
+strong {
+  font-weight: 700;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+}
+
 body {
   background: #fff;
+}
+
+.container,
+header {
+  max-width: 45em;
+  margin: 0 auto;
+}
+
+header {
+  padding: 0 .5em;
+  color: #c90b0b;
+}
+
+header img {
+  border-radius: 40px;
+  float: left;
+}
+
+header p {
+  font-size: 1.5em;
+  font-weight: 700;
+  padding-left: 4em;
+}
+
+header p span {
+  font-size: .8em;
+  font-weight: 400;
+}
+
+.hero {
+  padding: 2em;
+  background-color: #f8f8f8;
+  font-size: 1.2em;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+.content {
+  padding: 1em;
 }
 
 @media only screen and (max-width:480px) {
   body {
     font-size: 12px;
+  }
+
+  header p {
+    padding-left: 4.5em;
   }
 }
 
@@ -50,6 +105,49 @@ body {
 body {
   font-family: Trebuchet MS,Helvetica,sans-serif;
   background: #000;
+}
+
+.container {
+  background-color: rgba(240,60,60,.8);
+}
+
+img {
+  vertical-align: middle;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width:768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width:992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width:1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.container:after,
+.container:before {
+  content: " ";
+  display: table;
+}
+
+.container:after {
+  clear: both;
 }
 
 </style>

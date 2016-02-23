@@ -25,19 +25,20 @@ gulp.task('useref', function(){
         .pipe(gulpIf('*.js', uglify()))
         // Minifies only if it's a CSS file
         .pipe(gulpIf('*.css', uncss({
-            html: ['index.html', 'posts/**/*.html', 'http://example.com']
+            html: ['src/index.html', 'src/pizza.html', 'src/project-2048.html', 'src/project-mobile.html', 'src/project-webperf.html']
         })))
         .pipe(gulpIf('*.css', csso()))
         .pipe(gulpIf('*.css', cssnano()))
         .pipe(gulp.dest('dist'))
 });
-
+//todo: some background is red now!!! fix dis
 
 
 // Generate & Inline Critical-path CSS
 gulp.task('critical', function () {
     return gulp.src('dist/*.html')
-        .pipe(criticalobj({base: 'dist/', inline: true, css: ['dist/css/styles.min.css', 'dist/css/print.min.css', 'dist/css/pizzastyle.min.css']}))
+        .pipe(criticalobj({base: 'dist/', inline: true,
+            css: ['dist/css/styles.min.css', 'dist/css/print.min.css', 'dist/css/pizzastyle.min.css']}))
         .pipe(gulp.dest('dist'));
 });
 
@@ -79,7 +80,9 @@ gulp.task('clean:dist', function() {
 
 gulp.task('build', function (callback) {
     runSequence('clean:dist',
-        ['useref', 'images'], 'critical', 'pizzeria',
+        ['useref', 'images'],
+        'critical',
+        'pizzeria',
         callback
     )
 });
