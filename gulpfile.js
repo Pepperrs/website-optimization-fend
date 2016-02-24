@@ -36,9 +36,9 @@ gulp.task('useref', function(){
 
 // Generate & Inline Critical-path CSS
 gulp.task('critical', function () {
-    return gulp.src('dist/*.html')
+    return gulp.src('dist/*.html', '!/dist/pizza.html')
         .pipe(criticalobj({base: 'dist/', inline: true,
-            css: ['dist/css/styles.min.css', 'dist/css/print.min.css', 'dist/css/pizzastyle.min.css']}))
+            css: ['dist/css/styles.min.css', 'dist/css/print.min.css'/*, 'dist/css/pizzastyle.min.css'*/]}))
         .pipe(gulp.dest('dist'));
 });
 
