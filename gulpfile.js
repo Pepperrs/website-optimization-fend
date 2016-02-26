@@ -21,14 +21,19 @@ var criticalobj = require('critical').stream;
 
 gulp.task('useref', function(){
     return gulp.src('src/*.html')
+        //find and use the referenced js/css
         .pipe(useref())
+        // if js -> uglify
         .pipe(gulpIf('*.js', uglify()))
-        // Minifies only if it's a CSS file
+        // if css -> remove unused css
         .pipe(gulpIf('*.css', uncss({
             html: ['src/index.html', 'src/pizza.html', 'src/project-2048.html', 'src/project-mobile.html', 'src/project-webperf.html']
         })))
+        // if css -> optimize css
         .pipe(gulpIf('*.css', csso()))
+        // if css -> minify css
         .pipe(gulpIf('*.css', cssnano()))
+        // save everything in dist folder
         .pipe(gulp.dest('dist'))
 });
 //todo: some background is red now!!! fix dis
@@ -37,8 +42,11 @@ gulp.task('useref', function(){
 // Generate & Inline Critical-path CSS
 gulp.task('critical', function () {
     return gulp.src(['dist/*.html'/*, '!dist/pizza.html'*/])
-        .pipe(criticalobj({base: 'dist/', inline: true,
-            css: ['dist/css/styles.min.css', 'dist/css/print.min.css', 'dist/css/pizzastyle.min.css']}))
+        .pipe(criticalobj({
+            base: 'dist/',
+            inline: true,
+            css: ['dist/css/styles.min.css', 'dist/css/print.min.css'/*, 'dist/css/pizzastyle.min.css'*/]}
+        ))
         .pipe(gulp.dest('dist'));
 });
 
