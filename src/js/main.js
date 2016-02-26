@@ -16,6 +16,20 @@ Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
 */
 
+
+
+/* Todo: speed up scrolling and generation
+issue 1: layout and recalc are called for every moved pizza omfg
+  this can be turned off, since scrolling is already followed by recalc+layout
+
+issue 2:?
+
+
+ */
+
+
+
+
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
 var pizzaIngredients = {};
