@@ -26,9 +26,10 @@ gulp.task('useref', function(){
         // if js -> uglify
         .pipe(gulpIf('*.js', uglify()))
         // if css -> remove unused css
-        .pipe(gulpIf('*.css', uncss({
+        .pipe(gulpIf(['*.css', '!pizzastyle.css'], uncss({
             html: ['src/index.html', 'src/pizza.html', 'src/project-2048.html', 'src/project-mobile.html', 'src/project-webperf.html']
         })))
+
         // if css -> optimize css
         .pipe(gulpIf('*.css', csso()))
         // if css -> minify css
@@ -36,21 +37,30 @@ gulp.task('useref', function(){
         // save everything in dist folder
         .pipe(gulp.dest('dist'))
 });
-//todo: some background is red now!!! fix dis
+
 
 
 // Generate & Inline Critical-path CSS
 gulp.task('critical', function () {
-    return gulp.src(['dist/*.html'/*, '!dist/pizza.html'*/])
+    return gulp.src(['dist/*.html', '!dist/pizza.html'])
         .pipe(criticalobj({
             base: 'dist/',
             inline: true,
-            css: ['dist/css/styles.min.css', 'dist/css/print.min.css'/*, 'dist/css/pizzastyle.min.css'*/]}
+            css: ['dist/css/styles.min.css', 'dist/css/print.min.css']}
         ))
         .pipe(gulp.dest('dist'));
 });
 
-
+// Generate & Inline Critical-path CSS FOR PIZZA
+gulp.task('criticalPizza', function () {
+    return gulp.src(['dist/pizza.html'])
+        .pipe(criticalobj({
+            base: 'dist/',
+            inline: true,
+            css: [ 'dist/css/pizzastyle.min.css']}
+        ))
+        .pipe(gulp.dest('dist'));
+});
 
 
 gulp.task('images', function(){
@@ -85,6 +95,7 @@ gulp.task('build', function (callback) {
     runSequence('clean:dist',
         ['useref', 'images'],
         'critical',
+        //'criticalPizza',
         'pizzeria',
         callback
     )
