@@ -57,7 +57,7 @@ gulp.task('criticalPizza', function () {
         .pipe(criticalobj({
             base: 'dist/',
             inline: true,
-            css: [ 'dist/css/pizzastyle.min.css']}
+            css: [ 'dist/css/pizzastyle.min.css', 'dist/css/bootstrap.min.css']}
         ))
         .pipe(gulp.dest('dist'));
 });
@@ -95,7 +95,7 @@ gulp.task('build', function (callback) {
     runSequence('clean:dist',
         ['useref', 'images'],
         'critical',
-        //'criticalPizza',
+        'criticalPizza',
         'pizzeria',
         callback
     )
