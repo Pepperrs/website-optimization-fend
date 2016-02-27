@@ -22,9 +22,7 @@ cameron *at* udacity *dot* com
 issue 1: layout and recalc are called for every moved pizza omfg
   this can be turned off, since scrolling is already followed by recalc+layout
 
-issue 2:?
-
-
+issue 2: pizza image is not cached
  */
 
 
@@ -155,6 +153,7 @@ pizzaIngredients.crusts = [
   "Flatbread Crust",
   "Stuffed Crust"
 ];
+pizzaImageSave = "img/pizza.png";
 
 // Name generator pulled from http://saturdaykid.com/usernames/generator.html
 // Capitalizes first letter of each word
@@ -392,7 +391,7 @@ var pizzaElementGenerator = function(i) {
   pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
   pizzaImageContainer.classList.add("col-md-6");
 
-  pizzaImage.src = "img/pizza.png";
+  pizzaImage.src = pizzaImageSave;
   pizzaImage.classList.add("img-responsive");
   pizzaImageContainer.appendChild(pizzaImage);
   pizzaContainer.appendChild(pizzaImageContainer);
@@ -517,8 +516,9 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
+    var scrollTopvar = document.body.scrollTop / 1250
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = Math.sin((scrollTopvar) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
