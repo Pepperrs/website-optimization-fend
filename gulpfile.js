@@ -7,6 +7,7 @@ var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
+var imageminMozjpeg = require('imagemin-mozjpeg');
 var cache = require('gulp-cache');
 var del = require('del');
 var runSequence = require('run-sequence');
@@ -64,11 +65,9 @@ gulp.task('criticalPizza', function () {
 
 
 gulp.task('images', function(){
-    return gulp.src('src/img/**/*.+(png|jpg|jpeg|gif|svg)')
+    return gulp.src(['src/img/**/*.+(png|jpg|jpeg|gif|svg)', '!src/img/pizzeria.jpg'])
         // Caching images that ran through imagemin
-        .pipe(cache(imagemin({
-            interlaced: true
-        })))
+        .pipe(cache(imageminMozjpeg({quality: 80})()))
         .pipe(gulp.dest('dist/img'))
 });
 
@@ -78,10 +77,7 @@ gulp.task('pizzeria', function(){
 
 
         // Caching images that ran through imagemin
-        .pipe(cache(imagemin({
-            interlaced: true,
-            optimizationLevel : 7
-        })))
+        .pipe(cache(imageminMozjpeg({quality: 80})()))
         .pipe(imageResize({ width: 400 }))
         .pipe(gulp.dest('dist/img'))
 });
