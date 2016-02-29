@@ -18,11 +18,14 @@ cameron *at* udacity *dot* com
 
 
 
-/* Todo: speed up scrolling and generation
+/* Todo: speed up scrolling and generation and resizing
 issue 1: layout and recalc are called for every moved pizza omfg
   this can be turned off, since scrolling is already followed by recalc+layout
+  done
 
 issue 2: pizza image is not cached
+
+issue 3: fix resizing of pizzas
  */
 
 
@@ -465,6 +468,7 @@ var resizePizzas = function(size) {
   function changePizzaSizes(size) {
     for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
       var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
+        //todo: offsetWidth must be removed
       var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
       document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
     }
