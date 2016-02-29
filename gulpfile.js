@@ -1,5 +1,10 @@
 // source https://css-tricks.com/gulp-for-beginners/
 //
+
+// gulp-image-resize requires imagemagic and graphicsmagick!!!!!!
+
+
+
 var gulp = require('gulp');
 
 var useref = require('gulp-useref');
@@ -65,19 +70,14 @@ gulp.task('criticalPizza', function () {
 
 
 gulp.task('images', function(){
-    return gulp.src(['src/img/**/*.+(png|jpg|jpeg|gif|svg)', '!src/img/pizzeria.jpg'])
+    return gulp.src('src/img/**/*.+(png|jpg|jpeg|gif|svg)')
         // Caching images that ran through imagemin
         .pipe(cache(imageminMozjpeg({quality: 80})()))
         .pipe(gulp.dest('dist/img'))
 });
 
 gulp.task('pizzeria', function(){
-    return gulp.src('src/img/pizzeria.jpg')
-
-
-
-        // Caching images that ran through imagemin
-        .pipe(cache(imageminMozjpeg({quality: 80})()))
+    return gulp.src('dist/img/pizzeria.jpg')
         .pipe(imageResize({ width: 400 }))
         .pipe(gulp.dest('dist/img'))
 });
