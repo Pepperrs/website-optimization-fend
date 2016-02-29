@@ -6,7 +6,8 @@
 
 
 ## remove node_modules from git
-node_modules/
+/node_modules/
+
 
 
 ## Directory-based project format:
