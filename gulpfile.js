@@ -1,7 +1,7 @@
 // source https://css-tricks.com/gulp-for-beginners/
 //
 
-// gulp-image-resize requires imagemagic and graphicsmagick!!!!!!
+// gulp-image-resize requires imagemagick and graphicsmagick!!!!!!
 
 
 
