@@ -472,14 +472,10 @@ var resizePizzas = function(size) {
 
 
     // This part updates Pizzas
-    // it minimizes required layout actions by detaching and reappending them:
-    var allRandomPizzas = $('#randomPizzas');
-    var savedPizzas = allRandomPizzas.detach();
     savedPizzas.children().each(function() {
       this.style.width = newWidth;
     });
 
-    savedPizzas.appendTo('#reatachPizzaHere');
 
   }
 
