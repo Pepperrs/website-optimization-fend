@@ -29,8 +29,6 @@ issue 3: fix resizing of pizzas
  */
 
 
-
-
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
 var pizzaIngredients = {};
@@ -464,14 +462,25 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    // .offsetWidth has been moved out of the loop, since it causes recalculate layout
+    // offsetWidth has to be removed from all loops, since it is very costly
+    // This part of the function calculates the new Width of the pizza.
     var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-    var pizzaOffset = document.querySelectorAll(".randomPizzaContainer")[1].offsetWidth;
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(pizzaOffset, size, windowWidth);
-      var newwidth = (pizzaOffset + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
-    }
+    var pizzaBuffer= document.getElementsByClassName("randomPizzaContainer");
+    var pizzaOffset = pizzaBuffer[1].offsetWidth;
+    var dx = determineDx(pizzaOffset, size, windowWidth);
+    var newWidth = (pizzaOffset + dx) + 'px';
+
+
+    // This part updates Pizzas
+    // it minimizes required layout actions by detaching and reappending them:
+    var allRandomPizzas = $('#randomPizzas');
+    var savedPizzas = allRandomPizzas.detach();
+    savedPizzas.children().each(function() {
+      this.style.width = newWidth;
+    });
+
+    savedPizzas.appendTo('#reatachPizzaHere');
+
   }
 
   changePizzaSizes(size);
